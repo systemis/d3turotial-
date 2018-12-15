@@ -1,0 +1,67 @@
+<html>
+
+<head>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <meta charset="UTF-8">
+  <title>d3js</title>
+</head>
+
+<body>
+  <div></div>
+  <ul id='list'>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- <svg id='strokemain'>
+  </svg> -->
+  <script language='javascript'>
+    const div = d3.select('div')
+    const span = div.append('span');
+    div.classed('main', true);
+
+    console.log('Classed of div', div.classed('main'));
+    span.text('Hello span d3js');
+    span.attr('style', 'color: red');
+
+    function joinData() {
+      // return d3.select("#list").selectAll("li").data([10, 20, 30, 25, 15]);
+
+      const listView = d3.select('ul#list');
+      listView.selectAll('li')
+        .data([10, 20, 30, 40])
+        .text(text => { return text })
+        .enter()
+        .append('li')
+        .text(text => { return text });
+    }
+
+    function stroke(callback) {
+      const strokemain = d3.select('body').append('svg');
+      const line = strokemain.append('line');
+      strokemain.attr('width', 500).attr('height', 500);
+      strokemain.attr('id', 'strokemain');
+      line.attr('x1', 0);
+      line.attr('y1', 0);
+      line.attr('x2', 100);
+      line.attr('y2', 100);
+      line.attr('stroke', 'black');
+      line.attr('stroke-width', 1);
+      callback();
+    }
+
+    function circle() {
+      const strokemain = d3.select('#strokemain');
+      console.log(strokemain);
+      const circle = strokemain.append('circle');
+      circle
+        .attr('cx', 100)
+        .attr('cy', 100)
+        .attr('r', 100)
+        .attr('fill', 'red')
+    }
+
+    stroke(circle);
+  </script>
+</body>
+
+</html>
